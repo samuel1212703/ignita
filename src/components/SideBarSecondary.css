@@ -1,0 +1,19 @@
+#side-bar-secondary-main {
+  padding: 10px;
+}
+
+.tag-badges {
+  margin-right: 4px;
+}
+
+@media screen and (min-width: 768px) {
+  #side-bar-main {
+    font-size: larger;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  #side-bar-main {
+    font-size: x-large;
+  }
+}

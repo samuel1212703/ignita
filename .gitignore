@@ -5,6 +5,8 @@
 /.pnp
 .pnp.js
 
+.env
+/bower_components
 # testing
 /coverage
 

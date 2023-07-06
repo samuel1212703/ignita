@@ -1,0 +1,29 @@
+#side-bar-main {
+  padding: 10px;
+  text-align: center;
+}
+
+#profile-picture {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+@media only screen and (max-width: 768px) {
+  #profile-picture {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  #side-bar-main {
+    font-size: larger;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  #side-bar-main {
+    font-size: x-large;
+  }
+}

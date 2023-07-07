@@ -39,7 +39,7 @@ function getCurrentUser() {
   if (user) {
     return user;
   } else {
-    console.log("You are not signed in");
+    console.log("Not signed in");
     return {};
   }
 }

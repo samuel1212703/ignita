@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/ignita/static/css/main.b5f6a7a8.css",
-    "main.js": "/ignita/static/js/main.ab0cd327.js",
+    "main.js": "/ignita/static/js/main.355c9ed0.js",
     "index.html": "/ignita/index.html",
     "main.b5f6a7a8.css.map": "/ignita/static/css/main.b5f6a7a8.css.map",
-    "main.ab0cd327.js.map": "/ignita/static/js/main.ab0cd327.js.map"
+    "main.355c9ed0.js.map": "/ignita/static/js/main.355c9ed0.js.map"
   },
   "entrypoints": [
     "static/css/main.b5f6a7a8.css",
-    "static/js/main.ab0cd327.js"
+    "static/js/main.355c9ed0.js"
   ]
 }

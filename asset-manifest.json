@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/ignitia/static/css/main.b5f6a7a8.css",
+    "main.js": "/ignitia/static/js/main.f9d4a716.js",
+    "index.html": "/ignitia/index.html",
+    "main.b5f6a7a8.css.map": "/ignitia/static/css/main.b5f6a7a8.css.map",
+    "main.f9d4a716.js.map": "/ignitia/static/js/main.f9d4a716.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b5f6a7a8.css",
+    "static/js/main.f9d4a716.js"
+  ]
+}

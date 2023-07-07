@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/ignitia/static/css/main.b5f6a7a8.css",
-    "main.js": "/ignitia/static/js/main.f9d4a716.js",
-    "index.html": "/ignitia/index.html",
-    "main.b5f6a7a8.css.map": "/ignitia/static/css/main.b5f6a7a8.css.map",
-    "main.f9d4a716.js.map": "/ignitia/static/js/main.f9d4a716.js.map"
+    "main.css": "/ignita/static/css/main.b5f6a7a8.css",
+    "main.js": "/ignita/static/js/main.67988d7f.js",
+    "index.html": "/ignita/index.html",
+    "main.b5f6a7a8.css.map": "/ignita/static/css/main.b5f6a7a8.css.map",
+    "main.67988d7f.js.map": "/ignita/static/js/main.67988d7f.js.map"
   },
   "entrypoints": [
     "static/css/main.b5f6a7a8.css",
-    "static/js/main.f9d4a716.js"
+    "static/js/main.67988d7f.js"
   ]
 }

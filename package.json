@@ -1,8 +1,8 @@
 {
-  "name": "ignita",
+  "name": "ignitia",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://samuel1212703.github.io/ignita/",
+  "homepage": "https://samuel1212703.github.io/ignitia/",
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",

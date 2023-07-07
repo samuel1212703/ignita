@@ -3,7 +3,7 @@ import "./ImageViewer.css";
 function ImageViewer() {
   return (
     <div>
-      <img src="/images/girl.jpg" id="main-image"></img>
+      <img src="/ignitia/images/girl.jpg" id="main-image"></img>
     </div>
   );
 }

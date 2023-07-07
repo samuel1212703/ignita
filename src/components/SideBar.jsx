@@ -25,7 +25,7 @@ function SideBar() {
         <Row>
           <Col>
             <img
-              src="/images/profile-picture.png"
+              src="/ignitia/images/profile-picture.png"
               alt="The posters profile picture"
               id="profile-picture"
             ></img>

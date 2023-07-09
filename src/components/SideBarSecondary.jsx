@@ -1,5 +1,8 @@
 import { Col, Container, Row, Button, Badge } from "react-bootstrap";
 import "./SideBar.css";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { useEffect, useState } from "react";
+import { userIsLoggedIn } from "../database/firebase";
 
 const profileInfo = {
   name: "DianaPrincess",
@@ -12,6 +15,8 @@ const postInfo = {
 };
 
 function SideBarSecondary() {
+  const [signInStatus, setSignInStatus] = useState(userIsLoggedIn());
+
   return (
     <div id="side-bar-secondary-main">
       <Container>

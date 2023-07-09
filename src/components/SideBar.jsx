@@ -1,17 +1,22 @@
 import { Col, Container, Row, Button } from "react-bootstrap";
 import "./SideBar.css";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ChatIcon from "@mui/icons-material/Chat";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
-import PersonPinIcon from "@mui/icons-material/PersonPin";
-import { subscribeToUser } from "../database/firebase";
+import PersonPinCircleSharpIcon from "@mui/icons-material/PersonPinCircleSharp";
+import PersonPinCircleOutlinedIcon from "@mui/icons-material/PersonPinCircleOutlined";
+import {
+  subscribeToUser,
+  checkIfSubscribed,
+  userIsLoggedIn,
+} from "../database/firebase";
+import { useEffect, useState } from "react";
 
 const profileInfo = {
   name: "DianaPrincess",
+  email: "dianaprincess@gmail.com",
   bio: "Queen of world 👑 Sassy 18 😇 Miss me on 9/8 🎂 Friendly girl 💃 Single and Young 👸",
   tags: ["young", "cute", "fashion"],
-  userId: "JyWg0fDmJ16TZ0AO1h05",
+  uid: "JyWg0fDmJ16TZ0AO1h05",
 };
 
 const postInfo = {
@@ -19,13 +24,21 @@ const postInfo = {
 };
 
 function SideBar() {
+  const [following, setFollowing] = useState(
+    checkIfSubscribed(profileInfo.email)
+  );
+  function handleFollow() {
+    subscribeToUser(profileInfo.email);
+    setFollowing(1);
+  }
+
   return (
     <div id="side-bar-main">
       <Container>
         <Row>
           <Col>
             <img
-              src="/ignitia/images/profile-picture.png"
+              src="/images/profile-picture.png"
               alt="The posters profile picture"
               id="profile-picture"
             ></img>
@@ -39,9 +52,18 @@ function SideBar() {
             <Button>
               <Container>
                 <Row>
-                  <Col onClick={() => subscribeToUser(profileInfo.userId)}>
-                    Follow
-                    <PersonPinIcon />
+                  <Col onClick={handleFollow}>
+                    {following ? (
+                      <div>
+                        Following
+                        <PersonPinCircleSharpIcon />
+                      </div>
+                    ) : (
+                      <div>
+                        Follow
+                        <PersonPinCircleOutlinedIcon />
+                      </div>
+                    )}
                   </Col>
                 </Row>
               </Container>

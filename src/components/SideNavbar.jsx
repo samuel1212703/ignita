@@ -2,32 +2,58 @@ import "./SideNavbar.css";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { saveUserData, signInUser, verifyUser } from "../database/firebase";
+import {
+  saveUserData,
+  signInWithGoogle,
+  verifyUser,
+} from "../database/firebase";
 import { Button } from "react-bootstrap";
-import { useState } from "react";
-import { GoogleLogin } from "@react-oauth/google";
-import jwt from "jwt-decode";
-import { getAuth, signInWithCredential } from "firebase/auth";
+import { useEffect, useState } from "react";
+// import { GoogleLogin } from "@react-oauth/google";
+// import jwt from "jwt-decode";
+import { getAuth } from "firebase/auth";
+
+let user = "";
+try {
+  user = getAuth().currentUser;
+} catch {}
 
 function SideNavbar() {
-  const [signInStatus, setSignInStatus] = useState("");
+  const [signInStatus, setSignInStatus] = useState(
+    user ? user.displayName : ""
+  );
+
+  useEffect(() => {
+    if (getAuth().currentUser) {
+      setSignInStatus(user?.displayName);
+    } else {
+      setSignInStatus("");
+    }
+  });
+
+  function handleSignIn() {
+    signInWithGoogle().then((result) => {
+      setSignInStatus(result.user.displayName);
+    });
+  }
 
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
         {signInStatus === "" ? (
-          <GoogleLogin
-            onSuccess={(credentialResponse) => {
-              // signInUser(credentialResponse);
-              const jwtData = jwt(credentialResponse.credential);
-              setSignInStatus(jwtData.name);
-              saveUserData(jwtData);
-            }}
-            onError={() => {
-              console.log("Login Failed");
-            }}
-            useOneTap
-          />
+          // <GoogleLogin
+          //   onSuccess={(credentialResponse) => {
+          //     // signInUser(credentialResponse);
+          //     const jwtData = jwt(credentialResponse.credential);
+          //     setSignInStatus(jwtData.name);
+          //     saveUserData(jwtData);
+          //   }}
+          //   onError={() => {
+          //     console.log("Login Failed");
+          //   }}
+          //   useOneTap
+          // />
+          <Button onClick={handleSignIn}>Sign in</Button>
         ) : (
           <p>{signInStatus}</p>
         )}

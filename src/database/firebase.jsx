@@ -1,5 +1,5 @@
 import firebase from "firebase/compat/app";
-import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import {
   getFirestore,
   doc,
@@ -33,9 +33,12 @@ auth.useDeviceLanguage();
 const provider = new GoogleAuthProvider();
 //provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
 
+function userIsLoggedIn() {
+  return !getCurrentUser()?.currentUser?.isAnonymous;
+}
+
 function getCurrentUser() {
   const user = getAuth();
-  console.log(user);
   if (user) {
     return user;
   } else {
@@ -60,29 +63,49 @@ function getCurrentUser() {
 //   return firebase.auth().signInWithCredential(cred);
 // }
 
+async function signInWithGoogle() {
+  const result = await signInWithPopup(auth, provider);
+  saveUserData(result.user);
+  return result;
+}
+
 async function saveUserData(data) {
-  const user = getCurrentUser();
-  console.log(user);
-  console.log(user.email);
-  const docRef = doc(db, "users", user.email);
+  const docRef = doc(db, "users", data.email);
   const docSnap = await getDoc(docRef);
   if (!docSnap.exists()) {
     await setDoc(docRef, {
       email: data.email,
-      emailVerified: data.email_verified,
-      name: data.name,
-      pictureURL: data.picture,
+      emailVerified: data.emailVerified,
+      name: data.displayName,
+      pictureURL: data.photoURL,
+      uid: data.uid,
       subscriptions: [],
       accountCreationDate: serverTimestamp(),
     });
   }
 }
 
-async function subscribeToUser(userMail) {
+async function subscribeToUser(userEmail) {
+  let succes = false;
   const user = getCurrentUser();
-  console.log(user);
-  const docRef = doc(db, "users", user.email);
-  await updateDoc(docRef, { subscriptions: arrayUnion(userMail) });
+  const docRef = doc(db, "users", user.currentUser.email);
+  await updateDoc(docRef, { subscriptions: arrayUnion(userEmail) });
+  succes = true;
+  return succes;
+}
+
+function checkIfSubscribed(userEmail) {
+  const user = getCurrentUser().currentUser;
+  if (user) {
+    const docRef = doc(db, "users", user.email);
+    getDoc(docRef).then((docSnap) => {
+      if (docSnap?.data().subscriptions.includes(userEmail)) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+  }
 }
 
 async function postImages(images, postInfo) {
@@ -94,4 +117,11 @@ async function postImages(images, postInfo) {
   });
 }
 
-export { saveUserData, subscribeToUser };
+export {
+  saveUserData,
+  subscribeToUser,
+  postImages,
+  signInWithGoogle,
+  checkIfSubscribed,
+  userIsLoggedIn,
+};

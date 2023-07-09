@@ -4,6 +4,8 @@ import "./index.css";
 import App from "./App";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+// import { generatePath } from "react-router";
+// generatePath("/authenticate/google", {});
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
